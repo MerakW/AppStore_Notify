@@ -33,7 +33,7 @@ def barking(text: str, title: str = "", pic: str = "", tone: str = "", prior: in
             }
 
             bark = requests.get(
-                f"https://api.day.app/{key}/{text}", params=info)   # 请求推送
+                f"https://api.day.app/{key}/{title}/{text}", params=info)   # 请求推送
             print(bark.text)    # 打印返回结果
             return "推送成功"   # 返回推送成功
 
@@ -51,4 +51,4 @@ def barking(text: str, title: str = "", pic: str = "", tone: str = "", prior: in
             return "推送成功"
 
 
-barking("test",title="uwhfiehfuowhfoiwhf")
+barking("test",title="uwhfiehfuowhfoiwhf",prior=1)
