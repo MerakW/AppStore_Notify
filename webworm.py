@@ -1,4 +1,4 @@
 #爬虫部分
 
 import requests
-import database
+import sqlite3 as sql

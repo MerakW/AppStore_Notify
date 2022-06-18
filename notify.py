@@ -5,7 +5,7 @@ import requests
 import sqlite3 as sql
 
 # Bark平台推送
-def barking(text: str, title: str = "", pic: str = "", tone: str = "", prior: int = 0, url: str = "") -> str:
+def barking(text: str, title: str = "", pic: str = "", tone: str = "", prior: int = 0, url: str = "", uid: int =0) -> str:
     assert(isinstance(prior, int))
     levels = ["active", "timeSensitive", "passive"]
     level = levels[prior]
@@ -14,7 +14,7 @@ def barking(text: str, title: str = "", pic: str = "", tone: str = "", prior: in
     else:
         db = sql.connect("data/data.db")    # 连接数据库
         cur = db.cursor()   # 获取游标
-        command = "SELECT key FROM Notify where platform ='bark'"   # 查询key
+        command = f"SELECT key FROM Notify where platform =='bark' and uid =={uid}"   # 查询key
         cur.execute(command)    # 执行查询
         key = cur.fetchone()    # 获取结果
         key = str(key)  # 转换为字符串
@@ -50,5 +50,3 @@ def barking(text: str, title: str = "", pic: str = "", tone: str = "", prior: in
             print(bark.text)
             return "推送成功"
 
-
-barking("test",title="uwhfiehfuowhfoiwhf",prior=1)
