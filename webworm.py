@@ -3,5 +3,3 @@
 import requests
 import func
 import database
-
-#
