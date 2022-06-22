@@ -1,4 +1,5 @@
 
+from ensurepip import version
 import sqlite3 as sql
 import func
 
@@ -21,3 +22,13 @@ def newapp(name: str, appid: int, platform: int, ):   # 记录新的App信息
     db.close()  # 关闭数据库连接
     return True
     
+def getversion(): # 获取版本号
+    db = sql.connect("data/app.db")
+    cur = db.cursor()
+    command = "SELECT version FROM About"
+    cur.execute(command)
+    version = cur.fetchone()
+    version = str(version)
+    return version
+
+def
